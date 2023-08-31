@@ -20,6 +20,7 @@ const ads = new mongoose.Schema({
       type: Object,
     },
   ],
+  password: { type: String },
 });
 
 const Ads = mongoose.model("ad", ads);

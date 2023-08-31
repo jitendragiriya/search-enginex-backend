@@ -2,7 +2,6 @@ const CatchAsyncError = require("../Middlewares/CatchAsyncError");
 const Ads = require("../Models/ads");
 
 exports.addad = CatchAsyncError(async (req, res, next) => {
-  console.log(req.body);
   const ads = await Ads.create(req.body);
   await res.status(200).json(ads);
 });
@@ -29,6 +28,7 @@ exports.updateAdById = CatchAsyncError(async (req, res, next) => {
       mainHeading: req.body.mainHeading,
       mainDescription: req.body.mainDescription,
       subHeadings: req.body.subHeadings,
+      password: req.body.password,
     },
     {
       new: true,
