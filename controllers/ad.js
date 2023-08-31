@@ -10,7 +10,8 @@ exports.addad = CatchAsyncError(async (req, res, next) => {
  * get ad by seach query
  */
 exports.getAdBySearchQuery = CatchAsyncError(async (req, res, next) => {
-  const ads = await Ads.find({ query: [req.query.keyword] });
+  const host = req.get("origin");
+  const ads = await Ads.find({ query: [req.query.keyword], host });
   await res.status(200).json(ads);
 });
 
@@ -20,6 +21,7 @@ exports.getAllads = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.updateAdById = CatchAsyncError(async (req, res, next) => {
+  const host = req.get("origin");
   const newAd = await Ads.findByIdAndUpdate(
     { _id: req.body.adId },
     {
@@ -29,6 +31,7 @@ exports.updateAdById = CatchAsyncError(async (req, res, next) => {
       mainDescription: req.body.mainDescription,
       subHeadings: req.body.subHeadings,
       password: req.body.password,
+      host,
     },
     {
       new: true,
