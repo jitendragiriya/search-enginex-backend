@@ -1,7 +1,6 @@
 // Error handler
 const CatchAsyncError = require("../Middlewares/CatchAsyncError");
 const Posts = require("../Models/posts");
-const { post } = require("../routes");
 
 exports.addPost = CatchAsyncError(async (req, res, next) => {
   let posts = await Posts.find({ searchQuery: req.body.searchQuery });
