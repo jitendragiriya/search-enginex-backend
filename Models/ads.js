@@ -9,6 +9,9 @@ const ads = new mongoose.Schema({
   link: {
     type: String,
   },
+  displayLink: {
+    type: String,
+  },
   mainHeading: {
     type: String,
   },

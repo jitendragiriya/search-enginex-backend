@@ -14,6 +14,11 @@ exports.getAdBySearchQuery = CatchAsyncError(async (req, res, next) => {
   await res.status(200).json(ads);
 });
 
+exports.deleteAddById = CatchAsyncError(async (req, res, next) => {
+  const ads = await Ads.deleteOne({ _id: req.params.id });
+  await res.status(200).json(ads);
+});
+
 exports.getAllads = CatchAsyncError(async (req, res, next) => {
   const ads = await Ads.find();
   await res.status(200).json(ads);
@@ -28,6 +33,7 @@ exports.updateAdById = CatchAsyncError(async (req, res, next) => {
       mainHeading: req.body.mainHeading,
       mainDescription: req.body.mainDescription,
       subHeadings: req.body.subHeadings,
+      displayLink:req.body.displayLink
     },
     {
       new: true,

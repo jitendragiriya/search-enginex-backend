@@ -12,7 +12,7 @@ const ConnectDb = async () => {
     )
     .then(() => console.log("Database connected successfully."))
     .catch((error) => {
-      console.log("Database is not connected...\n\n", error);
+      console.log("Database is not connected...\n\n");
     });
 };
 
