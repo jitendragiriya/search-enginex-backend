@@ -7,7 +7,7 @@ exports.addPost = CatchAsyncError(async (req, res, next) => {
   if (posts?.length) {
     await res.status(200).json(posts);
   } else {
-    posts = await Posts.create(req.body);
+    posts = await Posts.create({ ...req.body, host: req.headers.origin });
     await res.status(200).json(posts);
   }
 });

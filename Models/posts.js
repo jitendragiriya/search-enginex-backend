@@ -9,8 +9,9 @@ const posts = new mongoose.Schema(
     searchInformation: { type: Object },
     items: { type: Object },
     searchQuery: { type: String },
+    host: { type: String },
   },
-  { timestamps:true }
+  { timestamps: true }
 );
 
 const Posts = mongoose.model("post", posts);

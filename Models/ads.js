@@ -22,6 +22,14 @@ const ads = new mongoose.Schema(
         type: Object,
       },
     ],
+    host: {
+      type: String,
+    },
+    isdeleted: {
+      type: Boolean,
+      default: false,
+    },
+    userId: { type: String },
   },
   { timestamps: true }
 );

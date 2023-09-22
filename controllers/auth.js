@@ -44,7 +44,7 @@ exports.login = CatchAsyncError(async (req, res, next) => {
 
     if (passwordMatch) {
       const token = jwt.sign(
-        { userId: user._id, username: user.username },
+        { _id: user._id, username: user.username },
         secretKey,
         {
           expiresIn: process.env.JSONWEBTOKEN_EXPIRESIN,
