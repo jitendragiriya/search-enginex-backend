@@ -1,7 +1,7 @@
 const CatchAsyncError = require("../Middlewares/CatchAsyncError");
 const Ads = require("../Models/ads");
 const Calls = require("../Models/calls");
-const OutBounds = require("../Models/outbound");
+const Hosts = require("../Models/hosts");
 
 exports.addad = CatchAsyncError(async (req, res, next) => {
   const ads = await Ads.create({
@@ -20,9 +20,9 @@ exports.getAdBySearchQuery = CatchAsyncError(async (req, res, next) => {
     query: req.query.keyword,
     isdeleted: false,
   }).select("-userId");
-  const calls = await Calls.count() + 1;
-  // const outBound = await OutBounds.findOne({ host: req.headers.origin });
-  await res.status(200).json({ ads, outBound: null });
+  await res.status(200).json({ ads });
+
+  const calls = (await Calls.count()) + 1;
   await Calls.create({ calls, query: req.query.keyword });
 });
 
@@ -49,7 +49,8 @@ exports.deleteAddById = CatchAsyncError(async (req, res, next) => {
 
 exports.getAllads = CatchAsyncError(async (req, res, next) => {
   const ads = await Ads.find({ isdeleted: false });
-  await res.status(200).json(ads);
+  const hosts = await Hosts.find({});
+  await res.status(200).json({ ads, hosts });
 });
 
 exports.updateAdById = CatchAsyncError(async (req, res, next) => {
