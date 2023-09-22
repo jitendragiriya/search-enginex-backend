@@ -5,6 +5,9 @@ const host = new mongoose.Schema(
     host: {
       type: String,
     },
+    visitors: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

@@ -23,7 +23,13 @@ exports.getAdBySearchQuery = CatchAsyncError(async (req, res, next) => {
   await res.status(200).json({ ads });
 
   const calls = (await Calls.count()) + 1;
-  await Calls.create({ calls, query: req.query.keyword });
+  await Calls.findOneAndUpdate(
+    { query: req.query.keyword },
+    {
+      query: req.query.keyword,
+      calls,
+    }
+  );
 });
 
 exports.deleteAddById = CatchAsyncError(async (req, res, next) => {
