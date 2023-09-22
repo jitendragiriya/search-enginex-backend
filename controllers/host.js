@@ -1,7 +1,6 @@
 const CatchAsyncError = require("../Middlewares/CatchAsyncError");
 const Hosts = require("../Models/hosts");
-const OutBounds = require("../Models/outbound");
-const Visitors = require("../Models/vistors");
+const OutBounds = require("../Models/outbound"); 
 
 // add out bound
 exports.addhost = CatchAsyncError(async (req, res, next) => {
